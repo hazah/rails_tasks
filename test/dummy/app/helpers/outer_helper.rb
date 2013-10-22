@@ -1,0 +1,2 @@
+module OuterHelper
+end
