@@ -10,11 +10,7 @@ module RailsTasks
     const_name = "#{controller.to_s.camelize}Controller"
     controller = ActiveSupport::Dependencies.constantize(const_name)
     
-    new_env = env.dup
-    new_env["action_dispatch.request.path_parameters"] ||= {}
-    new_env["rack.input"] ||= Rack::RewindableInput.new($stdin)
-    new_env["REQUEST_METHOD"] ||= 'GET'
-    
+    new_env = request.env.dup
     new_env["action_dispatch.request.path_parameters"].merge! options
     
     s, h, r = controller.action(options[:action]).call(new_env)
