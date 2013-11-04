@@ -1,3 +1,3 @@
 = RailsTasks
 
-This project rocks and uses MIT-LICENSE.
+This is very experimental code.

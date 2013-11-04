@@ -9,7 +9,7 @@ module RailsTasks
 
     def render(options = {}, locals = {}, &block)
       if options.is_a?(Hash) && options.has_key?(:controller)
-        controller._handle_render_options(options).try(:html_safe) || super
+        controller._handle_render_options(options.merge!(args: locals)).try(:html_safe) || super
       else
         super
       end
@@ -21,6 +21,8 @@ end
 ActionController::Renderers.add :controller do |controller, options|
   const_name = "#{controller.to_s.camelize}Controller"
   controller = ActiveSupport::Dependencies.constantize(const_name)
+
+  args = options.delete(:args)
 
   # Do not affect the surrounding environment directly through the controller,
   # copy it back in after instead.

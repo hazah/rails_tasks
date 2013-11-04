@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails_tasks (0.0.1)
+    rails_tasks (0.0.2)
       actionpack (~> 4.0.0)
       activesupport (~> 4.0.0)
 
